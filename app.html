@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>SocketIO chatRoom</title>
+        <!-- import jQuery Library -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    </head>
+    <body>
+        <!-- import socket.io javaScript Library -->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+            var socket = io() ;
+            socket.on('message',function(data){
+                document.body.innerHTML = '' ;
+                document.write(data);
+            });
+            socket.on('send message',function(data){
+                document.body.innerHTML = '' ;
+                document.write(data.description);
+            });
+            socket.on('broadcast',function(data){
+                document.body.innerHTML = '' ;
+                document.write(data.description) ;
+            });
+        </script>
+                <!-- assign specific DOM to do something -->
+<!--
+        <script>
+        $(function(){
+            var socket = io() ;
+            $('form').submit(function(){
+                socket.emit('send message',$('#m').val());
+                $('#m').val('') ;
+                return false ;
+            });
+            socket.on('send message',function(msg){
+                $('#messages').append($('<li>').text(msg));
+            });
+            
+        });
+            
+        </script>
+-->
+
+        <p>Hello chatRoom</p>
+    </body>
+</html>
